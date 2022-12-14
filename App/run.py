@@ -1,4 +1,4 @@
-from facturacion import create_app, db
+from facturacion import create_app
 from flask_admin import Admin
 from werkzeug.exceptions import HTTPException
 import traceback

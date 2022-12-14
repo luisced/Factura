@@ -6,7 +6,6 @@ from flask_mail import Mail
 from flask import Flask
 from facturacion.config import Config
 from flask_cors import CORS
-from twilio.rest import Client
 from flask_session import Session
 
 db = SQLAlchemy()
@@ -33,5 +32,12 @@ def create_app(config_class=Config):
     mail.init_app(app)
 
     app.app_context().push()
+
+    from facturacion.user.routes import user
+    from facturacion.tools.routes import tools
+
+    app.register_blueprint(user)
+    app.register_blueprint(tools)
+    app.config.from_object(Config)
 
     return app
